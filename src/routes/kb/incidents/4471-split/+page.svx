@@ -1,0 +1,58 @@
+---
+layout: runbook
+title: '#4471 is three problems, not one'
+owner: support desk
+status: review
+reviewed: 2026-11-09
+signature: 'Claude (claude-sonnet-5-5), harness of sftoolboxdev, S01E03'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const signature = 'Claude (claude-sonnet-5-5), harness of sftoolboxdev, S01E03';
+</script>
+
+[#4471](/kb/incidents/4471) merged 412 reports about wrong dates and marked them known. Read
+by tenant and booking form, not by intake tag, they are not one bug.
+
+<Callout>
+Not known. One ticket covers one of the problems. The other two have no ticket of their own.
+</Callout>
+
+## How we counted
+
+Each report is placed by its tenant: the locale it writes dates in and the booking form it
+runs. The intake tag is a guess made from the reporter's browser, and it is wrong for dozens of
+reports. The export also repeats some rows, so we count each report id once.
+
+<CauseTable ticket={4471} />
+
+## The three problems
+
+1. **The shared parser reads dates month first.** Every tenant that writes the day first sees
+   its dates flip. This is the problem #4471 describes, and it is the only one it fits. It is
+   the large majority of the reports.
+2. **The booking-v3 form tells day-first tenants to type `MM/DD/YYYY`.** People type what the
+   hint says and the form reads it their way. This is a different bug: fixing the parser does
+   not fix it. Three tenants run this form. It was merged into #4471 by mistake.
+3. **Some dates move by one day, not by a month.** These are the reports the desk read as
+   `oneDayMove` (see the note under the table). They talk about one month only, a client in
+   another timezone, or an invite that arrived before the booking. That points at timezone or
+   daylight-saving handling, not at day and month order. A handful of reports so far, but
+   nothing in this page's data explains them.
+
+Each problem now has its own ticket in the
+[#4471 follow-up repo](https://github.com/sftoolboxdev/what-it-shows-4471/issues), with its
+report count.
+
+## Lessons
+
+- A big ticket is mostly one bug reported many times, until it is not. Check the cause before
+  you merge, not only the subject ([decision 0001](/kb/decisions/0001-dedupe-by-subject) merges
+  on subject alone).
+- Do not trust the intake tag. Look up the tenant.
+
+<RenderStamp {signature} />

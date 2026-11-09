@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+		<link href="../../_app/immutable/assets/runbook.9BJ9BomY.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Callout.89E4ZsOX.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/CauseTable.AZcnZ4nk.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/5.BjoaMlTP.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.5cX38bkP.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Co_7V-cQ.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/pofxztRr.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/8g3g3-C1.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.xT0sxscY.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CEcdMiyW.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CZ0o2A07.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CfprhGC1.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.CtVbTKlM.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/O12a-z6Y.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/5.CitgfW9f.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BpZf8yJF.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DGI6Sx7V.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BP7pSjRK.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DzczbaRE.js"><!--[--><!--]--><title>#4471 is three problems, not one · support kb</title></head><body><!--[--><!--[--><!----><!----><!----><div class="kb svelte-60g32v"><header><a class="crumb svelte-60g32v" href="/kb">support desk · kb</a> <h1 class="svelte-60g32v">#4471 is three problems, not one</h1> <p class="meta svelte-60g32v"><span>owner <b>support desk</b></span> <span class="status review svelte-60g32v">review</span> <span class="svelte-60g32v">reviewed 2026-11-09 · 0 days ago</span></p></header> <!--[!--><!--]--> <main><p><a href="/kb/incidents/4471">#4471</a> merged 412 reports about wrong dates and marked them known. Read
+by tenant and booking form, not by intake tag, they are not one bug.</p> <aside class="note svelte-hdh0t2"><!---->Not known. One ticket covers one of the problems. The other two have no ticket of their own.<!----></aside><!----> <h2>How we counted</h2> <p>Each report is placed by its tenant: the locale it writes dates in and the booking form it
+runs. The intake tag is a guess made from the reporter’s browser, and it is wrong for dozens of
+reports. The export also repeats some rows, so we count each report id once.</p> <p class="sum svelte-5f1c7s"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p> <table><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead><tbody><!--[--><tr class="svelte-5f1c7s"><td class="svelte-5f1c7s"><code>parser</code></td><td class="svelte-5f1c7s">379</td><td class="tags svelte-5f1c7s">parser ×356 · hint ×23</td><td class="svelte-5f1c7s">11</td><td class="svelte-5f1c7s">2026-04-01 → 2026-10-04</td><td class="svelte-5f1c7s">#4471</td></tr><tr class="svelte-5f1c7s wrong"><td class="svelte-5f1c7s"><code>hint</code></td><td class="svelte-5f1c7s">33</td><td class="tags svelte-5f1c7s">hint ×18 · parser ×15</td><td class="svelte-5f1c7s">3</td><td class="svelte-5f1c7s">2026-04-17 → 2026-09-22</td><td class="svelte-5f1c7s">not this ticket — no ticket of its own</td></tr><!--]--></tbody></table> <!--[--><!--[--><p class="note svelte-5f1c7s">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p><!--]--><!--[!--><!--]--><!--]--><!----> <h2>The three problems</h2> <ol><li><strong>The shared parser reads dates month first.</strong> Every tenant that writes the day first sees
+its dates flip. This is the problem #4471 describes, and it is the only one it fits. It is
+the large majority of the reports.</li> <li><strong>The booking-v3 form tells day-first tenants to type <code>MM/DD/YYYY</code>.</strong> People type what the
+hint says and the form reads it their way. This is a different bug: fixing the parser does
+not fix it. Three tenants run this form. It was merged into #4471 by mistake.</li> <li><strong>Some dates move by one day, not by a month.</strong> These are the reports the desk read as <code>oneDayMove</code> (see the note under the table). They talk about one month only, a client in
+another timezone, or an invite that arrived before the booking. That points at timezone or
+daylight-saving handling, not at day and month order. A handful of reports so far, but
+nothing in this page’s data explains them.</li></ol> <p>Each problem now has its own ticket in the <a href="https://github.com/sftoolboxdev/what-it-shows-4471/issues" rel="nofollow">#4471 follow-up repo</a>, with its
+report count.</p> <h2>Lessons</h2> <ul><li>A big ticket is mostly one bug reported many times, until it is not. Check the cause before
+you merge, not only the subject (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a> merges
+on subject alone).</li> <li>Do not trust the intake tag. Look up the tenant.</li></ul> <!--[--><p class="stamp svelte-5qojh0">desk ref <b class="svelte-5qojh0">DR-6F6Q-09M2</b></p><!--]--><!----><!----></main> <footer class="svelte-60g32v">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!----><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1h9rwu4 = {
+						base: new URL("../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.5cX38bkP.js"),
+						import("../../_app/immutable/entry/app.xT0sxscY.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 5],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</body></html>
