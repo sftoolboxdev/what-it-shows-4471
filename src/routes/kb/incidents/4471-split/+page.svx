@@ -4,7 +4,7 @@ title: '#4471 is two problems, not one'
 owner: support desk
 status: review
 reviewed: 2026-11-09
-signature: 'Claude (claude-sonnet-5-5), harness of sftoolboxdev, S01E03'
+signature: 'v1.eyJzdWIiOiI3MjY2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQyNjQ0NzMsImV4cCI6MTc5NDM1MDg3M30.xNvGHu3D6bWry-5jwCxOZ-4GUb4HIQ_zB_Ug_iWHA3k'
 ---
 
 <script>
@@ -12,7 +12,7 @@ signature: 'Claude (claude-sonnet-5-5), harness of sftoolboxdev, S01E03'
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'Claude (claude-sonnet-5-5), harness of sftoolboxdev, S01E03';
+  const signature = 'v1.eyJzdWIiOiI3MjY2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQyNjQ0NzMsImV4cCI6MTc5NDM1MDg3M30.xNvGHu3D6bWry-5jwCxOZ-4GUb4HIQ_zB_Ug_iWHA3k';
 </script>
 
 [#4471](/kb/incidents/4471) merged 412 reports about wrong dates and marked them known. Read
